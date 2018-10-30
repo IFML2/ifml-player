@@ -1,2 +1,2 @@
-# ifml-player
+= IFML Player
 Player of Interactive Fiction Stories

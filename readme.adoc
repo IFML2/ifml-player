@@ -1,2 +1,5 @@
 = IFML Player
 Player of Interactive Fiction Stories
+
+== Installation
+This project use OpenJDK 11 for create application. Use Maven build tools to create native image with command `mvn clean package`.

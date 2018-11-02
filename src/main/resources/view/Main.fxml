@@ -11,11 +11,11 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="%menu.file">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#onOpen" text="Open" />
+              <MenuItem mnemonicParsing="false" onAction="#onOpen" text="%menu.file.open" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onExit" text="Exit" />
+                  <MenuItem mnemonicParsing="false" onAction="#onExit" text="%menu.file.exit" />
             </items>
           </Menu>
         </menus>

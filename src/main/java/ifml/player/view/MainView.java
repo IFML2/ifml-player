@@ -28,7 +28,7 @@ public class MainView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         webView.setContextMenuEnabled(false);
-        webView.getEngine().load(getClass().getResource("/story/story.html").toExternalForm());
+        webView.getEngine().load(getClass().getResource("/story/about.html").toExternalForm());
     }
 
 }

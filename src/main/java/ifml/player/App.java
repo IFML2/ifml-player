@@ -1,6 +1,9 @@
 package ifml.player;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import system.FolderChecker;
 
@@ -38,12 +42,23 @@ public class App extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        var parent = (Parent) FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
+        var resourceBundle = ResourceBundle.getBundle("ifml-player", new Locale("ru", "RU"));
+        var parent = loadParent("/view/Main.fxml", resourceBundle);
 
         primaryStage.setScene(new Scene(parent, 800.0, 600.0));
-        primaryStage.setTitle("IFML Player");
+        primaryStage.setTitle(resourceBundle.getString("title"));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/ifml.png")));
 
         primaryStage.show();
+    }
+
+    private Parent loadParent(final String viewName, final ResourceBundle resourceBundle) {
+        try {
+            return (Parent) FXMLLoader.load(getClass().getResource(viewName), resourceBundle);
+        } catch (IOException ex) {
+            LOG.error("Error during load FXML", ex);
+        }
+        return null;
     }
 
     /**

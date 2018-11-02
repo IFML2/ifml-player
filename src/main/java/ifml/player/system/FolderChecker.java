@@ -1,4 +1,4 @@
-package system;
+package ifml.player.system;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

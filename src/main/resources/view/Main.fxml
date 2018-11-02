@@ -7,13 +7,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane fx:controller="ifml.player.view.MainView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifml.player.view.MainView">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="%menu.file">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#onOpen" text="%menu.file.open" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRestart" text="%menu.file.restart" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onSave" text="%menu.file.save" />
+                  <MenuItem mnemonicParsing="false" onAction="#onLoad" text="%menu.file.load" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#onExit" text="%menu.file.exit" />
             </items>

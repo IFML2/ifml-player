@@ -1,4 +1,4 @@
-package system;
+package ifml.player.system;
 
 import ifml.player.model.ApplicationConfiguration;
 

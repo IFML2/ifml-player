@@ -42,7 +42,7 @@ const IFMLUI = (function (root) {
             outNode.querySelector('h2').innerHTML = title || "";
             outNode.querySelector('p').innerHTML = description || "";
             buf = [];
-            nodeStoryText.innerHTML = buf.join("");
+            textNode.innerHTML = buf.join("");
         },
         addText: function (text) {
             buf.push('<div class="uk-alert">' + text + '</div>');

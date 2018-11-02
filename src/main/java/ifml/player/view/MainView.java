@@ -21,6 +21,18 @@ public class MainView implements Initializable {
         LOG.info("File::Open menu item");
     }
 
+    @FXML private void onRestart() {
+        LOG.info("File::Restart menu item");
+    }
+
+    @FXML private void onSave() {
+        LOG.info("File::Save menu item");
+    }
+
+    @FXML private void onLoad() {
+        LOG.info("File::Load menu item");
+    }
+
     @FXML private void onExit() {
         Platform.exit();
     }

@@ -1,4 +1,4 @@
 /**
  * Package for special system stuff.
  */
-package system;
+package ifml.player.system;

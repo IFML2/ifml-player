@@ -7,9 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
+import javafx.concurrent.Worker.State;
+import javafx.event.EventHandler;
+import netscape.javascript.JSObject;
 
 public class MainView implements Initializable {
 
@@ -40,7 +46,30 @@ public class MainView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         webView.setContextMenuEnabled(false);
-        webView.getEngine().load(getClass().getResource("/story/about.html").toExternalForm());
+        var engine = webView.getEngine();
+        var adapter = new IfmlAdapter(engine);
+        var bridge = new IfmlBridge(adapter);
+
+        engine.setOnAlert(new EventHandler<WebEvent<String>>() {
+            
+            @Override
+            public void handle(WebEvent<String> event) {
+                LOG.info("ALERT: {}", event.getData());
+            }
+        });
+
+        engine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
+            @Override
+            public void changed(ObservableValue<? extends State> observable, State oldValue, State newValue) {
+                if (newValue == State.SUCCEEDED) {
+                    var win = (JSObject) engine.executeScript("window");
+                    win.setMember("IFML", bridge); //TODO: create with dependencies to Engine...
+                    engine.executeScript("window.IFML.log('test');");
+                }
+            }
+        });
+
+        engine.load(getClass().getResource("/story/story.html").toExternalForm());
     }
 
 }

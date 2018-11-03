@@ -22,34 +22,40 @@
         </div>
     </div>
 <script type="text/javascript">
-const IFMLUI = (function (root) {
-    var buf = [];
-    var inputNode = document.querySelector('#ifml-input');
-    var outNode = document.querySelector('#ifml-out');
-    var textNode = document.querySelector('#ifml-text');
+"use strict";
 
-    inputNode.onchange = (event) => {
-        var text = inputNode.value;
-        if (!!text && text.length > 0) {
-            inputNode.value = '';
-            buf.push('<div>&gt; ' + text + '</div>');
-            textNode.innerHTML = buf.join('');
-        }
-    };
+    const IFMLUI = (function () {
+        var buf = [];
+        var inputNode = document.querySelector('#ifml-input');
+        var outNode = document.querySelector('#ifml-out');
+        var textNode = document.querySelector('#ifml-text');
 
-    return {
-        newLocation: function (title, description) {
-            outNode.querySelector('h2').innerHTML = title || "";
-            outNode.querySelector('p').innerHTML = description || "";
-            buf = [];
-            textNode.innerHTML = buf.join("");
-        },
-        addText: function (text) {
-            buf.push('<div class="uk-alert">' + text + '</div>');
-            textNode.innerHTML = buf.join('');
-        }
-    };
-})(this);
+        inputNode.onchange = (event) => {
+            var text = inputNode.value;
+            if (!!text && text.length > 0) {
+                window.IFML.log(text);
+                inputNode.value = ''; 
+                //TODO: change abbriviation to full text...
+                buf.push('<div>&gt; ' + text + '</div>');
+                textNode.innerHTML = buf.join('');
+                window.IFML.parse(text);
+            }
+        };
+
+        return {
+            showLocation: function (title, description) {
+                outNode.querySelector('h2').innerHTML = title || "";
+                outNode.querySelector('p').innerHTML = description || "";
+                buf = [];
+                textNode.innerHTML = buf.join("");
+            },
+            showText: function (text) {
+                buf.push('<div class="uk-alert">' + text + '</div>');
+                textNode.innerHTML = buf.join('');
+            }
+        };
+    })();
+
 </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ module ifml.player {
     requires javafx.web;
     requires org.slf4j;
     requires java.desktop;
+    requires jdk.jsobject;
     exports ifml.player;
-    opens ifml.player.view to javafx.fxml;
+    opens ifml.player.view to javafx.fxml, javafx.web;
 }

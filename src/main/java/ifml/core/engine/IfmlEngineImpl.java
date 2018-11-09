@@ -5,6 +5,7 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ifml.core.IfmlOutputDevice;
 import ifml.core.engine.model.Location;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;

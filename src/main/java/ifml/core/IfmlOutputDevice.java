@@ -1,4 +1,4 @@
-package ifml.core.engine;
+package ifml.core;
 
 import java.awt.image.BufferedImage;
 

@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ifml.core.IfmlOutputDevice;
 import ifml.core.engine.IfmlEngine;
-import ifml.core.engine.IfmlOutputDevice;
 import javafx.scene.media.Media;
 import javafx.scene.web.WebEngine;
 

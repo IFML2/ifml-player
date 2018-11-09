@@ -7,6 +7,8 @@ import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import ifml.ifml2.xml.libs.LibraryParser;
+
 public class LibraryTests {
 
     @Test void testLoadingEmptyLibrary() throws IOException {

@@ -1,11 +1,10 @@
-package ifml.core.xml.libs;
+package ifml.ifml2.xml.libs;
 
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import javax.xml.parsers.ParserConfigurationException;

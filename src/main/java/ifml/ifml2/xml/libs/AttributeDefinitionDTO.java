@@ -1,4 +1,4 @@
-package ifml.core.xml.libs;
+package ifml.ifml2.xml.libs;
 
 import java.io.Serializable;
 

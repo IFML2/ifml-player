@@ -1,29 +1,16 @@
-package ifml.core.engine.model.saved;
+package ifml.ifml2.xml.game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-
-public class SavedProperty implements Serializable {
+public class PropertyDTO implements Serializable {
 
     /** Object version for serialization. */
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "name")
     private String name;
-    @XmlElement(name = "item")
     private List<String> items = new ArrayList<>();
-
-    public SavedProperty() {}
-
-    public SavedProperty(final String name, final List<String> items) {
-        this();
-        this.name = name;
-        this.items = items;
-    }
 
     public String getName() {
         return name;

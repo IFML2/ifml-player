@@ -47,14 +47,19 @@
                 outNode.querySelector('h2').innerHTML = title || "";
                 outNode.querySelector('p').innerHTML = description || "";
                 buf = [];
-                textNode.innerHTML = buf.join("");
+                textNode.innerHTML = buf.join('');
             },
             showText: function (text) {
                 buf.push('<div class="uk-alert">' + text + '</div>');
                 textNode.innerHTML = buf.join('');
             }
+            showImage: function (img, alt) {
+                buf.push('<div><img src="data:image/png;base64,' + img + '" alt="' + alt + '"></div>');
+                textNode.innerHTML = buf.join('');
+            }
         };
     })();
+    window.IFMLUI = IFMLUI;
 
 </script>
 </body>

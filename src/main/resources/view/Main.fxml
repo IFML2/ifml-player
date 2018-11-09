@@ -7,25 +7,34 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifml.player.view.MainView">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="%menu.file">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#onOpen" text="%menu.file.open" />
-                  <MenuItem mnemonicParsing="false" onAction="#onRestart" text="%menu.file.restart" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onSave" text="%menu.file.save" />
-                  <MenuItem mnemonicParsing="false" onAction="#onLoad" text="%menu.file.load" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onExit" text="%menu.file.exit" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <center>
-      <WebView fx:id="webView" prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+    prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="ifml.player.view.MainView">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="%menu.file">
+                    <items>
+                        <MenuItem fx:id="menuItemFileOpen" mnemonicParsing="false" text="%menu.file.open" />
+                        <MenuItem fx:id="menuItemFileRestart" mnemonicParsing="false" text="%menu.file.restart" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="menuItemFileSave" mnemonicParsing="false" text="%menu.file.save" />
+                        <MenuItem fx:id="menuItemFileLoad" mnemonicParsing="false" text="%menu.file.load" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="menuItemFileExit" mnemonicParsing="false" text="%menu.file.exit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu.library">
+                    <items>
+                        <MenuItem fx:id="menuItemLibraryCatalog" mnemonicParsing="false" text="%menu.library.catalog" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="menuItemLibraryImport" mnemonicParsing="false" text="%menu.library.import" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <WebView fx:id="webView" prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+    </center>
 </BorderPane>

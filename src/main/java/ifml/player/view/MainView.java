@@ -6,14 +6,18 @@ import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ifml.core.engine.IfmlEngineImpl;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.concurrent.Worker.State;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import netscape.javascript.JSObject;
 
@@ -21,55 +25,94 @@ public class MainView implements Initializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(MainView.class);
 
+    @FXML private MenuItem menuItemFileOpen;
+    @FXML private MenuItem menuItemFileRestart;
+    @FXML private MenuItem menuItemFileSave;
+    @FXML private MenuItem menuItemFileLoad;
+    @FXML private MenuItem menuItemFileExit;
+    @FXML private MenuItem menuItemLibraryCatalog;
+    @FXML private MenuItem menuItemLibraryImport;
+
     @FXML private WebView webView;
 
-    @FXML private void onOpen() {
-        LOG.info("File::Open menu item");
-    }
+    private IfmlEngineImpl ifmlEngine = new IfmlEngineImpl();
 
-    @FXML private void onRestart() {
-        LOG.info("File::Restart menu item");
-    }
+    private void initMenuItems() {
+        menuItemFileOpen.setOnAction(new EventHandler<ActionEvent>() {
 
-    @FXML private void onSave() {
-        LOG.info("File::Save menu item");
-    }
+            @Override
+            public void handle(ActionEvent event) {
+                var fileChooser = new FileChooser();
+                var selected = fileChooser.showOpenDialog(null);
+                if (selected != null) {
+                    //TODO: file was choosen;
+                    ifmlEngine.loadStory(selected);
+                }
+            }
 
-    @FXML private void onLoad() {
-        LOG.info("File::Load menu item");
-    }
+        });
 
-    @FXML private void onExit() {
-        Platform.exit();
+        menuItemFileRestart.setDisable(true);
+        menuItemFileRestart.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO: Ask You are sure ?
+                ifmlEngine.restart();
+            }
+
+        });
+
+        menuItemFileSave.setDisable(true);
+
+        menuItemFileLoad.setDisable(true);
+
+        menuItemFileExit.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO: Add question: You are really want to exit.
+                Platform.exit();
+            }
+
+        });
+
+        menuItemLibraryCatalog.setDisable(true);
+
+        menuItemLibraryImport.setDisable(true);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initMenuItems();
+
         webView.setContextMenuEnabled(false);
-        var engine = webView.getEngine();
-        var adapter = new IfmlAdapter(engine);
+        var webEngine = webView.getEngine();
+        var adapter = new IfmlAdapter(webEngine, ifmlEngine);
         var bridge = new IfmlBridge(adapter);
 
-        engine.setOnAlert(new EventHandler<WebEvent<String>>() {
-            
+        webEngine.setOnAlert(new EventHandler<WebEvent<String>>() {
+
             @Override
             public void handle(WebEvent<String> event) {
                 LOG.info("ALERT: {}", event.getData());
             }
+
         });
 
-        engine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
+        webEngine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
             @Override
             public void changed(ObservableValue<? extends State> observable, State oldValue, State newValue) {
                 if (newValue == State.SUCCEEDED) {
-                    var win = (JSObject) engine.executeScript("window");
+                    var win = (JSObject) webEngine.executeScript("window");
                     win.setMember("IFML", bridge); //TODO: create with dependencies to Engine...
-                    engine.executeScript("window.IFML.log('test');");
+                    webEngine.executeScript("window.IFML.log('test');");
                 }
             }
         });
+        ifmlEngine.registerOutDevice(adapter);
 
-        engine.load(getClass().getResource("/story/story.html").toExternalForm());
+        webEngine.load(getClass().getResource("/story/story.html").toExternalForm());
     }
 
 }

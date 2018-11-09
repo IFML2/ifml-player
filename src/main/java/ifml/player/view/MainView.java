@@ -30,8 +30,12 @@ public class MainView implements Initializable {
     @FXML private MenuItem menuItemFileSave;
     @FXML private MenuItem menuItemFileLoad;
     @FXML private MenuItem menuItemFileExit;
+
     @FXML private MenuItem menuItemLibraryCatalog;
     @FXML private MenuItem menuItemLibraryImport;
+
+    @FXML private MenuItem menuItemSettingsCheat;
+    @FXML private MenuItem menuItemSettingsSettings;
 
     @FXML private WebView webView;
 
@@ -80,6 +84,10 @@ public class MainView implements Initializable {
         menuItemLibraryCatalog.setDisable(true);
 
         menuItemLibraryImport.setDisable(true);
+
+        menuItemSettingsCheat.setDisable(true);
+
+        menuItemSettingsSettings.setDisable(true);
     }
 
     @Override

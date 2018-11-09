@@ -31,6 +31,13 @@
                         <MenuItem fx:id="menuItemLibraryImport" mnemonicParsing="false" text="%menu.library.import" />
                     </items>
                 </Menu>
+                <Menu mnemonicParsing="false" text="%menu.settings">
+                    <items>
+                        <MenuItem fx:id="menuItemSettingsCheat" mnemonicParsing="false" text="%menu.settings.cheat" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="menuItemSettingsSettings" mnemonicParsing="false" text="%menu.settings.settings" />
+                    </items>
+                </Menu>
             </menus>
         </MenuBar>
     </top>
